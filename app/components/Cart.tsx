@@ -33,10 +33,20 @@ export default function Cart() {
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="absolute top-0 right-0 w-full h-screen p-12 overflow-y-scroll bg-white lg:w-1/4"
+        className="absolute top-0 right-0 w-full h-screen p-12 overflow-y-scroll bg-white lg:w-2/5"
       >
         <motion.div layout className="absolute top-0 right-0 z-10 w-full p-12">
-          <h1 className="float-left">Shopping List</h1>
+          {cartStore.onCheckout === "checkout" && (
+            <button
+              onClick={() => cartStore.setCheckout("cart")}
+              className="float-left font-medium cursor-pointer"
+            >
+              Back to Shopping List
+            </button>
+          )}
+          {cartStore.onCheckout === "cart" && (
+            <h1 className="float-left font-medium">Shopping List</h1>
+          )}
           <button
             onClick={() => cartStore.toggleCart()}
             className="float-right pb-12 font-bold cursor-pointer text-md"
@@ -103,7 +113,7 @@ export default function Cart() {
           </>
         )}
 
-        {cartStore.cart.length > 0 && (
+        {cartStore.cart.length > 0 && cartStore.onCheckout === "cart" ? (
           // Total amount and checkout
           <motion.div layout className="my-10">
             <p>Total: {formatPrice(totalAmount)}</p>
@@ -115,7 +125,7 @@ export default function Cart() {
               Checkout
             </button>
           </motion.div>
-        )}
+        ) : null}
         {/* Checkout form */}
         {cartStore.onCheckout === "checkout" && <Checkout />}
         <AnimatePresence>

@@ -40,8 +40,8 @@ export default async function handler(
     products: {
       create: items.map((item) => ({
         name: item.name,
-        description: item.description,
-        unit_amount: item.unit_amount,
+        description: item.description || null,
+        unit_amount: parseFloat(item.unit_amount),
         quantity: item.quantity,
         image: item.image,
       })),
@@ -78,8 +78,8 @@ export default async function handler(
             deleteMany: {},
             create: items.map((item) => ({
               name: item.name,
-              description: item.description,
-              unit_amount: item.unit_amount,
+              description: item.description || null,
+              unit_amount: parseFloat(item.unit_amount),
               quantity: item.quantity,
               image: item.image,
             })),
@@ -101,8 +101,6 @@ export default async function handler(
     const newOrder = await prisma.order.create({
       data: orderData,
     });
+    res.status(200).json({ payment_intent });
   }
-
-  res.status(200).json({ payment_intent_id });
-  return;
 }
