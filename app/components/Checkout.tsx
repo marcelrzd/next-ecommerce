@@ -16,6 +16,7 @@ export default function Checkout() {
   const [clientSecret, setClientSecret] = useState("");
   const router = useRouter();
 
+  // todo: check why stripe elements disappear
   useEffect(() => {
     // Create payment intent when the page loads
     fetch("/api/create-payment-intent", {
@@ -47,7 +48,7 @@ export default function Checkout() {
     },
   };
   return (
-    <div className="mt-10">
+    <div className="mt-20">
       {clientSecret && (
         <div>
           <Elements options={options} stripe={stripePromise}>
