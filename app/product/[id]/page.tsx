@@ -13,7 +13,7 @@ export default async function Product({ searchParams }: SearchParamTypes) {
         height={600}
         className="w-full"
       ></Image>
-      <div className="font-medium text-gray-700">
+      <div className="font-medium ">
         <h1 className="py-2 text-2xl">{searchParams.name}</h1>
         <p className="py-2">{searchParams.description}</p>
         {searchParams.features && (
@@ -21,7 +21,7 @@ export default async function Product({ searchParams }: SearchParamTypes) {
         )}
 
         <div className="flex gap-2">
-          <p className="font-bold text-teal-700">
+          <p className="font-bold text-primary">
             {searchParams.unit_amount !== null
               ? formatPrice(searchParams.unit_amount)
               : "N/A"}

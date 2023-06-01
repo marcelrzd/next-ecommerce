@@ -14,23 +14,23 @@ export default function AddCart({
   const cartStore = useCartStore();
   const [added, setAdded] = useState(false);
 
-  // const handleAddToCart = () => {
-  //   cartStore.addProduct({ name, id, image, unit_amount, quantity });
-  //   setAdded(true);
-  //   setTimeout(() => {
-  //     setAdded(false);
-  //   }, 500);
-  // };
+  const handleAddToCart = () => {
+    cartStore.addProduct({ name, id, image, unit_amount, quantity });
+    setAdded(true);
+    setTimeout(() => {
+      setAdded(false);
+    }, 500);
+  };
 
   return (
     <>
       <button
-        onClick={() =>
-          cartStore.addProduct({ id, image, name, unit_amount, quantity })
-        }
-        className="px-6 py-2 my-12 font-medium text-white bg-teal-700 rounded-md"
+        onClick={handleAddToCart}
+        disabled={added}
+        className="w-full my-4 btn btn-primary"
       >
-        Add to cart
+        {!added && <span>Add to cart</span>}
+        {added && <span>Adding to cart</span>}
       </button>
     </>
   );

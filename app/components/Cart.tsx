@@ -36,7 +36,7 @@ export default function Cart() {
         onClick={(e) => e.stopPropagation()}
         className="absolute top-0 right-0 w-full h-screen p-12 overflow-y-scroll bg-white lg:w-2/5"
       >
-        <motion.div layout className="absolute top-0 right-0 z-10 w-full p-12">
+        <motion.div layout className="absolute top-0 right-0 w-full p-12">
           {cartStore.onCheckout === "checkout" && (
             <button
               onClick={() => cartStore.setCheckout("cart")}
@@ -61,7 +61,7 @@ export default function Cart() {
               <motion.div
                 layout
                 key={item.id}
-                className="flex gap-4 py-4 my-10"
+                className="flex gap-4 py-4 mt-16"
               >
                 <Image
                   src={item.image}
@@ -121,7 +121,7 @@ export default function Cart() {
 
             <button
               onClick={() => cartStore.setCheckout("checkout")}
-              className="w-full py-2 mt-4 text-white bg-teal-700 rounded-md"
+              className="w-full my-4 btn btn-primary"
             >
               Checkout
             </button>
