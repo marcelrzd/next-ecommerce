@@ -56,7 +56,7 @@ export default function CheckoutForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} id="payment-form" className="text-gray-600">
+    <form onSubmit={handleSubmit} id="payment-form">
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
       <h1 className="py-4 text-sm font-bold">Total: {formattedPrice}</h1>
       <button

@@ -50,7 +50,7 @@ export default function Nav({ user }: Session) {
         {user && (
           <div>
             <li>
-              <div className="cursor-pointer dropdown dropdown-end">
+              <div className="cursor-pointer dropdown dropdown-hover dropdown-end">
                 <Image
                   src={user?.image as string}
                   alt={user.name as string}

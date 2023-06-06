@@ -2,7 +2,7 @@
 
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { useCartStore } from "@/store";
+import { useCartStore, useThemeStore } from "@/store";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import CheckoutForm from "./CheckoutForm";
@@ -14,12 +14,23 @@ const stripePromise = loadStripe(
 );
 
 export default function Checkout() {
+  const themeStore = useThemeStore();
+  const [theme, setTheme] = useState<"flat" | "stripe" | "night" | "none">(
+    "stripe"
+  );
   const cartStore = useCartStore();
   const [clientSecret, setClientSecret] = useState("");
   const router = useRouter();
 
   // todo: check why stripe elements disappear
   useEffect(() => {
+    // set stripe theme
+    if (themeStore.mode === "light") {
+      setTheme("stripe");
+    } else {
+      setTheme("night");
+    }
+
     // Create payment intent when the page loads
     fetch("/api/create-payment-intent", {
       method: "POST",
@@ -45,7 +56,7 @@ export default function Checkout() {
   const options: StripeElementsOptions = {
     clientSecret,
     appearance: {
-      theme: "stripe",
+      theme: theme,
       labels: "floating",
     },
   };

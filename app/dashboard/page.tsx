@@ -39,7 +39,11 @@ export default async function Dashboard() {
       <div>
         {orders.map((order) => (
           <div
-            className="p-8 my-4 space-y-2 rounded-lg bg-base-200"
+            className={`${
+              order.status === "complete"
+                ? "hover:border-teal-500"
+                : "hover:border-orange-500"
+            } p-8 my-4 space-y-2 transition duration-500 ease-in-out border-2 border-solid rounded-lg border-base-200 bg-base-200 `}
             key={order.id}
           >
             <h2>Order Reference: {order.id}</h2>
