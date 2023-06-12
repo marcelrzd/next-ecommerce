@@ -13,9 +13,9 @@ import DarkLight from "./DarkLight";
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
   return (
-    <nav className="flex items-center justify-between py-12">
+    <nav className="flex items-center justify-between w-full py-8 bg-base-200">
       <Link href={"/"}>
-        <h1 className="text-xl font-lobster">Ultimate Game Store</h1>
+        <h1 className="ml-6 text-xl font-lobster">Ultimate Game Store</h1>
       </Link>
 
       <ul className="flex items-center gap-8">
@@ -41,14 +41,14 @@ export default function Nav({ user }: Session) {
         <DarkLight />
         {/* check if the user is signed in */}
         {!user && (
-          <div>
+          <div className="mr-6">
             <li className="px-4 py-2 text-white rounded-md bg-primary">
               <button onClick={() => signIn()}>Sign in</button>
             </li>
           </div>
         )}
         {user && (
-          <div>
+          <div className="mr-6">
             <li>
               <div className="cursor-pointer dropdown dropdown-hover dropdown-end">
                 <Image

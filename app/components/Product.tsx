@@ -25,11 +25,12 @@ export default function Product({
           alt={name}
           width={800}
           height={800}
-          className="object-cover w-full rounded-lg h-96"
+          className="object-cover w-full mt-6 rounded-lg h-96"
+          priority={true}
         />
-        <div className="font-medium">
+        <div className="mt-2 font-medium">
           <h1>{name}</h1>
-          <h2 className="text-sm text-primary">
+          <h2 className="text-sm text-gray-500 ">
             {unit_amount !== null ? formatPrice(unit_amount) : "N/A"}
           </h2>
         </div>

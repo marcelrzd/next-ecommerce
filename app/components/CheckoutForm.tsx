@@ -65,7 +65,17 @@ export default function CheckoutForm({
         disabled={isLoading || !stripe || !elements}
       >
         <span id="button-text">
-          {isLoading ? <span>Processing...</span> : <span>Pay Now</span>}
+          {isLoading ? (
+            <span>
+              Processing
+              <span className="loading loading-dots loading-xs"></span>
+            </span>
+          ) : (
+            <>
+              <span>Pay Now</span>
+              <span className="text-white loading loading-dots loading-xs"></span>
+            </>
+          )}
         </span>
       </button>
     </form>

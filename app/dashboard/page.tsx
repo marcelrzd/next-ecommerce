@@ -1,13 +1,13 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import formatPrice from "@/util/priceFormat";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/util/prisma";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 
+// refetch data every time the user enters the page
 export const revalidate = 0;
 
 const fetchOrders = async () => {
-  const prisma = new PrismaClient();
   const user = await getServerSession(authOptions);
   if (!user) {
     return null;
@@ -25,12 +25,16 @@ export default async function Dashboard() {
   const orders = await fetchOrders();
   console.log(orders);
   if (orders === null) {
-    return <div>You need to be logged in to view your orders</div>;
+    return (
+      <div className="flex items-center justify-center w-full mt-12 font-medium">
+        You need to be logged in to view your orders
+      </div>
+    );
   }
   if (orders.length === 0) {
     return (
-      <div>
-        <h1>No Orders Placed</h1>
+      <div className="flex items-center justify-center w-full mt-12 font-medium">
+        <span>No Orders Placed</span>
       </div>
     );
   }
@@ -70,7 +74,8 @@ export default async function Dashboard() {
                       alt={product.name}
                       width={36}
                       height={36}
-                      className="object-cover"
+                      className="object-cover w-auto"
+                      priority={true}
                     />
                     <p>{formatPrice(product.unit_amount)}</p>
                     <p>Quantity: {product.quantity}</p>

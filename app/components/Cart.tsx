@@ -57,11 +57,13 @@ export default function Cart() {
         </motion.div>
         {cartStore.onCheckout === "cart" && (
           <>
-            {cartStore.cart.map((item) => (
+            {cartStore.cart.map((item, index) => (
               <motion.div
                 layout
                 key={item.id}
-                className="flex gap-4 p-4 my-4 mt-16 rounded-lg bg-base-300"
+                className={`${
+                  index === 0 ? "mt-16" : "mt-4"
+                } flex gap-4 p-4 my-4 rounded-lg bg-base-300`}
               >
                 <Image
                   src={item.image}
