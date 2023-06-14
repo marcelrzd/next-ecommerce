@@ -26,28 +26,28 @@ export default async function Dashboard() {
   console.log(orders);
   if (orders === null) {
     return (
-      <div className="flex items-center justify-center w-full mt-12 font-medium">
+      <div className="flex justify-center flex-grow w-full mt-12 font-medium">
         You need to be logged in to view your orders
       </div>
     );
   }
   if (orders.length === 0) {
     return (
-      <div className="flex items-center justify-center w-full mt-12 font-medium">
+      <div className="flex justify-center flex-grow w-full mt-12 font-medium">
         <span>No Orders Placed</span>
       </div>
     );
   }
   return (
-    <div>
-      <div>
+    <div className="flex-grow">
+      <div className="p-8">
         {orders.map((order) => (
           <div
             className={`${
               order.status === "complete"
                 ? "hover:border-teal-500"
                 : "hover:border-orange-500"
-            } p-8 my-4 space-y-2 transition duration-500 ease-in-out border-2 border-solid rounded-lg border-base-200 bg-base-200 `}
+            } p-6 my-4 space-y-2 transition duration-500 ease-in-out border-2 border-solid rounded-lg border-base-200 bg-base-200 `}
             key={order.id}
           >
             <h2>Order Reference: {order.id}</h2>

@@ -4,6 +4,7 @@ import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { IoLogoGoogle } from "react-icons/io5";
 import Cart from "./Cart";
 import { useCartStore } from "@/store";
 import { AiFillShopping } from "react-icons/ai";
@@ -12,8 +13,12 @@ import DarkLight from "./DarkLight";
 
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
+  const handleSignIn = () => {
+    window.location.href = "https://accounts.google.com/AccountChooser";
+  };
+
   return (
-    <nav className="flex items-center justify-between w-full py-8 bg-base-200">
+    <nav className="flex items-center justify-between w-full py-6 bg-base-200">
       <Link href={"/"}>
         <h1 className="ml-6 text-xl font-lobster">Ultimate Game Store</h1>
       </Link>
@@ -41,11 +46,21 @@ export default function Nav({ user }: Session) {
         <DarkLight />
         {/* check if the user is signed in */}
         {!user && (
-          <div className="mr-6">
-            <li className="px-4 py-2 text-white rounded-md bg-primary">
-              <button onClick={() => signIn()}>Sign in</button>
-            </li>
-          </div>
+          <details className="mr-6 dropdown dropdown-end">
+            <summary className="px-4 py-2 text-white list-none transition ease-in-out rounded-md cursor-pointer bg-primary hover:bg-purple-950">
+              Sign In
+            </summary>
+            <ul className="text-white transition ease-in-out shadow dropdown-content menu">
+              <li>
+                <button
+                  className="px-4 py-2 mt-1 rounded-md bg-primary hover:bg-purple-950"
+                  onClick={() => handleSignIn()}
+                >
+                  <IoLogoGoogle /> Google
+                </button>
+              </li>
+            </ul>
+          </details>
         )}
         {user && (
           <div className="mr-6">

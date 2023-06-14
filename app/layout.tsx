@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import Hydrate from "./components/Hydrate";
 import { Roboto, Lobster_Two } from "next/font/google";
+import Footer from "./components/Footer";
 
 export const metadata = {
   title: "Next Eccomerce",
@@ -34,6 +35,7 @@ export default async function RootLayout({
       <Hydrate>
         <Nav user={session?.user} expires={session?.expires as string} />
         {children}
+        <Footer />
       </Hydrate>
     </html>
   );
