@@ -54,7 +54,7 @@ export default function Nav({ user }: Session) {
               <li>
                 <button
                   className="px-4 py-2 mt-1 rounded-md bg-primary hover:bg-purple-950"
-                  onClick={() => handleSignIn()}
+                  onClick={() => signIn()}
                 >
                   <IoLogoGoogle /> Google
                 </button>
